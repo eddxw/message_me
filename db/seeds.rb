@@ -11,3 +11,8 @@ User.create(username: 'Gandalf', password: 'password')
 User.create(username: 'Harry', password: 'password')
 User.create(username: 'Arya', password: 'password')
 User.create(username: 'Linley', password: 'password')
+User.create(username: 'Gosu', password: 'password')
+
+Message.create(body: 'This is a message', user: User.last)
+Message.create(body: 'This is another message', user: User.first)
+Message.create(body: 'Expecto Patronus!!', user: User.find(3))
