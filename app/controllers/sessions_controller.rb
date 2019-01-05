@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
-  def new
-  end
+  before_action :logged_in_redirect, only: %i[new create]
+  def new; end
+
   def create
     user = User.find_by(username: params[:session][:username])
-    if user && user.authenticate(params[:session][:password])
+    if user&.authenticate(params[:session][:password])
       # good scenario
       session[:user_id] = user.id
       flash[:success] = 'You have successfully logged in'
@@ -18,5 +21,14 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     flash[:success] = 'You have succesfully logged out'
     redirect_to login_path
+  end
+
+  private
+
+  def logged_in_redirect
+    if logged_in?
+      flash[:error] = 'You are already logged in'
+      redirect_to root_path
+    end
   end
 end
