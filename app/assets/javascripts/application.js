@@ -38,6 +38,5 @@ $(document).on('turbolinks:load', () => {
       e.target.value = '';
     }
   });
-
   scroll_bottom();
 });
