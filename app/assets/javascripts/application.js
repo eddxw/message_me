@@ -31,5 +31,13 @@ $(document).on('turbolinks:load', () => {
         .closest('.message')
         .transition('fade');
     });
-    scroll_bottom()
+
+  var textfield = document.getElementById('message_body');
+  textfield.addEventListener('keyup', (e) => {
+    if (e.keyCode === 13) {
+      e.target.value = '';
+    }
+  });
+
+  scroll_bottom();
 });
